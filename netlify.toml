@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+  [build.environment]
+    # These env vars hold non-sensitive config values (localhost URLs, model names,
+    # numeric limits) whose values appear in .env.example, README, and source code
+    # defaults. The secrets scanner would flag them as leaked secrets, but they are
+    # not credentials. Omit them from secrets scanning to unblock deploys.
+    SECRETS_SCAN_OMIT_KEYS = "LOCAL_AI_BASE_URL,OPENAI_MODEL,LOCAL_AI_PAPER_NUM_PREDICT"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
